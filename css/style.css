@@ -1,0 +1,945 @@
+@font-face {
+    font-family: rounded;
+    src: url("../assets/Arial\ Rounded\ MT\ Regular.ttf");
+}
+:root {
+    --color1: rgb(129, 104, 157);
+    --color2:rgb(255, 208, 236);
+    --color3: rgb(255, 255, 255);
+    --color4: rgb(51, 24, 107);
+    --color5: rgb(205, 137, 201);
+    --color6: rgb(0, 0, 0);
+    --color7: rgba(247, 131, 131, 0.189);
+    --color8: rgb(241, 234, 255);
+    --color9: rgb(229, 212, 255);
+    --color10: rgb(220, 191, 255);
+    --color11: rgb(208, 162, 247);
+    --color12: rgba(87, 83, 83, 0.711);
+
+}
+
+.dark-theme {
+    --color2:rgb(7, 13, 60);
+    --color1: rgb(115, 98, 190);
+    --color5: rgb(49, 56, 102); 
+    --color3: rgb(255, 255, 255);
+
+
+
+
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color2);
+    font-family: rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    transition: background-color 0.8s, color 0.5s;
+}
+
+
+
+
+
+.wholeContainer {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    padding: 1% 2% 2% 1%;
+    gap: 40px;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1600px;
+    background-color: var(--color2);
+
+}
+
+.header {
+    border: 1px solid black;
+    width: 100%;
+    height: 5em;
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
+    /* padding: 1%; */
+}
+
+.leftNav {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex: 2;
+
+}
+
+.logo {
+    /* width: 50%; */
+    display: flex;
+    /* flex-direction: column; */
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10%;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: black;
+    text-shadow: 1px 1px 1px;
+    flex: 9;
+    
+   
+
+}
+
+/* .toggle-btn {
+    border: 1px solid var(--color1);
+    background: var(--color1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 50%;
+    border-radius: 20%;
+    cursor: pointer;
+    transform: scale(1.1); 
+
+} */
+
+.toggle-btn img {
+   width: 25px;
+
+}
+
+
+
+#profilePopup {
+    display: none;
+
+}
+
+#profileBtn {
+    position: relative;
+}
+
+#profilePopup  {
+
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    width: 10%;
+    height: fit-content;
+    background-color: var(--color3);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 1px 1px 1px;
+    cursor: pointer;
+}
+
+/* styling a profile pop up */
+
+.profileName {
+    border: 1px solid black;
+    padding: 2%;
+    border-radius: 10px;
+
+}
+
+#profileHeader {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--color1);
+
+
+}
+
+#logoutform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logoutBtn {
+    /* border: 1px solid black; */
+    border-radius: 10%;
+    padding: 2%;
+    background-color: var(--color1);
+    color: var(--color3);
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.blocks {
+    /* border:1px solid black ; */
+    width: 100%;
+    height: 100em;
+    display: flex;
+    gap: 3%;
+    /* background-color: var(--color3); */
+
+}
+
+.timerTodo {
+    /* border-right:1px solid black ; */
+    width: 50%;
+    height: 100em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* padding: 3%; */
+    gap:3.5%;
+
+}
+
+.timerBox {
+    border: 1px solid black;
+    height: 25em;
+    max-height: 25em;
+    display: flex;
+    /* flex-direction: column; */
+    align-items:center;
+    /* background-color: var(--color3); */
+    
+    /* justify-content:center; */
+
+
+}
+
+.pos {
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 8;
+    /* gap: 10px; */
+}
+
+#timerProgress {
+    display: grid; 
+    place-items: center;
+    z-index: 10; 
+    position: relative;
+
+    /* align-self: center; */
+    justify-self:flex-end;
+    height:80%; 
+    /* width: 90%; */
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition: 1000ms;
+ 
+    --angle: 360deg;
+    --color: var(--color1);
+
+    background: conic-gradient(var(--color) 0, 
+                                var(--color) var(--angle),
+                                white var(--angle),
+                                white 360deg );
+
+
+}
+
+.timerBox,.todo,.notes,.footer,.header {
+    background-color: var(--color3);
+    box-shadow: 1px 1px 1px;
+    border-radius: 10px;
+
+
+}
+
+
+#timerProgress::after {
+    z-index: -1;
+    position: absolute;
+    content: '';
+    height: 90%;
+    width: 90%;
+    top: 5%; 
+    left: 5%; 
+    background-color: white;
+    border-radius: 50%;
+    transition: 1000ms;
+
+}
+
+/* add an @media to progresstimer to make it responsive */
+.controls {
+    /* border: 1px solid black; */
+    width: 20%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    flex: 4;
+    gap: 1rem;
+
+}
+
+#start,#add,#reset {
+    border: 1px solid white;
+    padding:10px;
+    border-radius: 10%;
+}
+
+
+
+#start {
+    font-weight: bolder;
+    font-size: 16px;
+    color: var(--color3);
+    background-color: var(--color1);
+
+}
+
+#start:hover {
+    transform: scale(1.1);
+}
+
+#add:hover {
+    transform: scale(1.1);
+
+}
+
+#reset:hover {
+    transform: scale(1.1);
+
+}
+
+#timer {
+    font-size:2rem;
+    align-self: flex-end;
+}
+
+#mode {
+    align-self: flex-start;
+
+}
+
+dialog {
+    border: 1px solid black;
+    width: 20%;
+    height: 24%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color8);
+    border-radius: 10px;
+    padding: 0.5% ;
+
+}
+
+.insideDialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    /* background-color: var(--color7); */
+}
+
+.userInput {
+    width: 100%;
+    height: 2rem;
+    border: 1px solid var(--color1);
+    border-radius: 5px;
+    padding: 0.5rem;
+    outline: none;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    color: var(--color4);
+
+}
+
+.timeInput {
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--color8);
+
+
+}
+
+.timeInput:hover {
+    background-color: var(--color9);
+}
+
+.dc {
+    background-color: var(--color8);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    color: var(--color4);
+    font-weight: bolder;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px black;
+
+}
+
+.dc:hover {
+    background-color: var(--color9);
+    transform: scale(1.1);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.todo {
+    border: 1px solid black;
+    height: 50em;
+    max-height: 50em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 5%;
+    background-color: var(--color8);
+    /* overflow: hidden; */
+    /* align-items: center; */
+
+}
+
+#todoHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+#todoTitle {
+    font-size: large;
+    font-weight: bolder;
+    /* color: white; */
+
+
+}
+
+#todoCat {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.cat {
+    border: 1px solid rgb(0, 0, 0);
+    background-color: var(--color1);
+    padding: 2px;
+    border-radius: 5px;
+    color: var(--color3);
+    font-weight: bolder;
+    box-shadow: 1px 1px 1px black;
+    cursor: pointer;
+    display: flex;
+}
+
+.cat:hover {
+    background-color: var(--color4);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.catNum {
+    color: var(--color3);
+}
+
+.catNum:hover {
+    color: var(--color3);
+    transform: scale(1.1);
+}
+
+
+
+.todoRow {
+    display: flex;
+    align-items: center;
+    background: var(--color10);
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px;
+
+}
+
+#todoText {
+    width: 75%;
+    height: 150%;
+    border-radius: 10px;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: rgb(13, 13, 13);
+    padding: 15px;
+}
+
+#addBtn {
+    /* width: 25%;
+    height: 170%; */
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+    border: none;
+    background-color: var(--color4);
+    color: var(--color3);
+    font-weight: bold;
+    cursor: pointer;
+    /* box-shadow: 1px 1px 1px; */
+
+}
+
+#addBtn:hover {
+    transform: scale(1.1);
+}
+
+.listContainer {
+    margin-bottom: 0rem;
+    width: 100%;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listTodos {
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.stats {
+    width: 93%;
+    background-color: var(--color3);
+    border-radius: 7px;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 1px 1px;
+}
+
+.todoLines {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+}
+
+.listContainer li.complete {
+    opacity: 0.5;
+    text-decoration: line-through;
+    color:grey;
+}
+
+
+/* editing checkbox */
+input[type ='checkbox']{
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1.5 solid black;
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    background-image: url(../assets/round.png); 
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+}
+
+input[type ='checkbox']::before{
+    content:'x';
+    cursor: pointer;
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+input[type ='checkbox']:checked{
+    background-color: var(--color1);
+    border-color: var(--color3);
+}
+
+input[type ='checkbox']:checked::before{
+    transform: scale(1);
+    color: var(--color3);
+
+}
+
+ul li {
+    /* width: relative; */
+    list-style: none;
+    font-size: 16px;
+    color: rgb(13, 13, 13);
+    /* padding: 10px; */
+    cursor: pointer;
+    position: relative;
+}
+
+.deleteTask {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteB {
+    width: 1.0rem;
+    height: 1.0rem;
+}
+
+.deleteB:hover {
+    transform: scale(.8);
+}
+
+.listTodos li span {
+    padding: 2px;
+    border-radius: 6px;
+    transform:scale(1);
+    /* overflow: auto; */
+
+}
+
+.listTodos li span:focus {
+    background-color: rgb(236, 225, 227);
+    outline: none;
+}
+
+.listTodos li span:hover {
+    background-color: var(--color9);
+    transform: scale(1.1);
+}
+
+
+
+
+.notes {
+    border: 1px solid black;
+    width: 50%;
+    padding: 0% 1% 0% 1%;
+    height: 83em;
+    background-color: var(--color1);
+    /* display: flex; */
+
+ }
+
+ #form1 {
+    display: flex;
+    flex-direction: column;
+
+ }
+
+table {  
+    border-collapse: collapse;  
+    width: 100%;  
+}
+
+.notesTitle {
+    font-size: large;
+    font-weight: bolder;
+    color: var(--color3);
+
+}
+
+
+.notesBody:hover{
+    overflow: scroll;
+    scrollbar-color: var(--color5) var(--color3);
+    scroll-padding: 0.5rem;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+
+}
+
+.listTodos:hover {
+    /* overflow: scroll; */
+    scrollbar-color: var(--color1) var(--color3);
+    scroll-padding: 0.5rem;
+    /* scroll-behavior: smooth; */
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+}
+
+.stats:hover {
+    background-color: var(--color5);
+    cursor: pointer;
+    color: var(--color3);
+}
+
+.notesBody {
+    height: 85%;
+    overflow: hidden;
+    background-color: var(--color3);
+    border-radius: 10px;
+
+
+}
+table tr td {  
+    border: 1.5px solid var(--color9);
+    width: 100%;  
+    padding: 1%;
+}  
+
+.bottomNote,.notesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.notesHeader {
+    padding: 1%;
+
+}
+
+.searchNotes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 0.15rem;
+    padding: 1%;
+}
+
+.searchBox {
+    display: flex;
+    width: 100%;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    /* background-color: var(--color5); */
+
+}
+
+#text {
+    background-color: var(--color5);
+    width: 50%;
+    height: 1rem;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    padding: 0.5rem  ;
+    color: var(--color4);
+}
+
+#searchBtn {
+    background-color: var(--color5);
+    width: 10%;	
+    height: 100%;
+    border: none;
+    padding: 0.3rem 0.3rem ;
+    border-radius: 0px 5px 5px 0px ;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.results {
+    /* display: none; */
+    /* border: 1px solid black; */
+    width: 39%;
+    height: fit-content;
+    border-radius: 5px ;
+    padding: 5px;
+    background-color: var(--color3);
+    box-shadow: 1px 1px 1px;
+    position: absolute;
+    left: 28%;
+    top: 6%;
+    }
+
+.res {
+    padding: 0% 1% 0% 1%;
+    border-radius: 4px;
+}
+
+.res:hover {
+    background-color: var(--color9);
+    cursor: pointer;
+
+}
+
+
+
+#addNote:hover {
+    transform: scale(1.1);
+}
+
+#addN,#closeButton {
+    border: 1px solid var(--color3);
+    width: 30%;
+    padding:10px;
+    border-radius: 10%;
+    background-color: chocolate;
+    color: var(--color3);
+    font-weight: bolder;
+}
+
+
+/* use @media to change the layout orientation of the page i.e shift notes down and keep timer an todo up in an horizontal orientation */
+
+
+.notes {
+    position: relative;
+}
+
+.modalContainer {
+    border: 1px solid black;
+    /* background-color: rgba(247, 131, 131, 0.189); transparent color*/
+    background-color: var(--color9);
+    width: 80%;
+    height: 60%;
+    display: none;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    z-index:1;
+    padding: 0.5% ;
+    border-radius: 10px;
+  }
+
+
+  .modalHeader {
+    width: 100%;
+    height: 10%;
+    font-size: large;
+    border-bottom: 1px solid var(--color8);
+  }
+
+  .noteTitle {
+    width: 100%;
+    height: 20%;
+    /* border: 1px solid black; */
+    font-size: large;
+    font-weight:700;
+  }
+
+  .noteH {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  
+  }
+
+ #titleNote{
+    width: 99%;
+    font-size: large;
+  }
+
+  #titleNote {
+    outline: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    padding: 2%;
+
+  }
+
+  .noteT {
+    display: flex;
+  }
+
+#noteContent {
+    width: 96.5%;
+    background-color: var(--color3);
+    padding: 3%;
+    font-size: 14px;
+}
+
+.nContent {
+    width: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+tr:hover {
+    background-color: var(--color8);
+    /* transform: ease-in-out 0.5s; */
+    cursor: pointer;
+
+}
+
+.timeStamp {
+    font-size: small;
+    color: var(--color12);
+
+}
+
+
+.footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: var(--color3);
+    font-family: rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    transition: background-color 0.8s, color 0.5s;
+}
+
+.footerContent {
+    border: 5px dotted black;
+    padding: 5%;
+    gap: 40px;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1440px;
+    background-color: var(--color3);
+    font-size: larger;
+
+}
+
+
+
+.header,.timer,.todo,.notes,.footer {
+    border-radius: 7px;
+}
+
