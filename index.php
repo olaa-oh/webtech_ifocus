@@ -3,6 +3,10 @@ include 'functions/todo_fxn.php';
 include 'functions/notes_fxn.php';
 include 'functions/displayNotes.php';
 include 'functions/get_note_content.php';
+include 'functions/deleteCount.php';
+include 'actions/profileInfo.php';
+
+
 // session_start();
 
 // // Check if user is logged in
@@ -33,8 +37,17 @@ include 'functions/get_note_content.php';
                 <div class="profile">
                     <div id="profilePopup" >
                         <div id = "profileHeader">Your Bio</div>
-                        <p  class = "profileName">Username: <span class = "displayInfo"></span></p>
-                        <p class = "profileName">Email: <span class = "displayInfo"></span></p>
+                        <p  class = "profileName">Username:
+                        <span class = "displayInfo">
+                            <?php
+                            // echo $username;
+                            ?>
+                        </span></p>
+                        <p class = "profileName">Email: <span class = "displayInfo">
+                            <?php
+                            // echo $email;
+                            ?>
+                        </span></p>
                         <form method="post" action="" id = "logoutform">
                             <input type="submit" name="logout" value="Logout" id = "logoutBtn">
                         </form>
@@ -100,14 +113,14 @@ include 'functions/get_note_content.php';
                         <!-- add img -->
                         </div>
                         <div id="todoCat">
-                            <div class="cat">Completed_
+                            <div class="cat"  onclick="toggleView('completed')">Completed_
                                 <div class="catNum" id = "comNum">
                                     <?php
                                     echo $completedCount;
                                     ?>
                                 </div>
                             </div>
-                            <div class="cat">All Tasks_
+                            <div class="cat">Pending_
                                 <div class="catNum" id = "allNum">
                                     <?php
                                     echo $pendingCount;
@@ -115,7 +128,7 @@ include 'functions/get_note_content.php';
                                 </div>
                             </div>
                             <!-- change bin with image -->
-                            <div class="cat">Recycle Bin_
+                             <div class="cat">Recycle Bin_
                                 <div class="catNum" id = "reNum">
                                     <?php
                                     echo $cancelledCount;
@@ -131,28 +144,39 @@ include 'functions/get_note_content.php';
                             <button id ="addBtn" name = "addBtn" type ="submit">Add</button>
 
                         </div>
-                    </form>
-                    <div class="listTodos">
-                            <?php
-                            echo $data;
-                            ?>
-                                <!-- <li class = "complete">
-                                <div class = "stats">
-                                    <div class = "todoLines">
-                                        <input type="checkbox" name = "tasks" id = "2">
-                                        <span>Task 2</span>
+                        </form>
+                        <div class="listTodos" id = "listTodos">
+                                <?php
+                                echo $pdata;
+                                ?>
+                                    <!-- <li class = "complete">
+                                    <div class = "stats">
+                                        <div class = "todoLines">
+                                            <input type="checkbox" name = "tasks" id = "2">
+                                            <span>Task 2</span>
+                                        </div>
+                                        <button title ="delete task"  class = "deleteTask">
+                                            <img src="assets/close.png" alt="delete task"class ="deleteB" >
+
+                                        </button>
                                     </div>
-                                    <button title ="delete task"  class = "deleteTask">
-                                        <img src="assets/close.png" alt="delete task"class ="deleteB" >
+                                    </li> -->
+                        </div>
+                        <div id="completedTasks" >
 
-                                    </button>
-                                </div>
-                                </li> -->
+                                <div class="listCompleted" class="hidden">
+                                <div class="comTitle">Completed Tasks</div>
 
-                        
-                    </div>
+
+                                <?php
+                                echo $cdata;
+                                ?>
+                                </div>   
+                        </div>
                 </div>
             </div>
+
+
             <!-- Have it in such a way that it displays without disabling -->
             <div class="notes">
                 <div class="notesHeader">
@@ -208,11 +232,27 @@ include 'functions/get_note_content.php';
                 <div class="notesFooter"></div>
             </div>
         </div>
+        </div>
+        </div>
+      
+     
 
 
         
 
-        </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="footer">
             <div class="footerContent">
 
@@ -265,11 +305,10 @@ include 'functions/get_note_content.php';
                         <h2>Conclusion:</h2>
                         <p>By combining the Pomodoro Technique with todo lists, you can take control of your time and maximize your productivity. Whether you're studying for exams, tackling a work project, or pursuing personal goals, these techniques provide a structured approach to getting things done. Start implementing them today and experience the difference they can make in your life.</p>
 
-            </div>
-           
 
-
+             </div>
         </div>
+    </div>
 
 
     
@@ -357,7 +396,7 @@ include 'functions/get_note_content.php';
             results.style.display = 'none';
         }
 
-
+// change of theme
 
         let btn = document.getElementById('btn');
         let btnText = document.getElementById('btnText');
@@ -376,6 +415,83 @@ include 'functions/get_note_content.php';
             }
 
         });
+
+
+// let btn = document.getElementById('btn');
+// let btnText = document.getElementById('btnText');
+// let btnIcon = document.getElementById('btnIcon');
+
+// // Default theme
+// let currentTheme = localStorage.getItem('theme') || 'dark-theme';
+
+// // Function to toggle the theme
+// btn.addEventListener('click', function () {
+//     currentTheme = currentTheme === 'dark-theme' ? 'root' : 'dark-theme';
+//     updateTheme(currentTheme);
+// });
+
+// // Function to update the theme
+// function updateTheme(theme) {
+//     if (theme === 'dark-theme') {
+//         document.body.classList.add('dark-theme');
+//         document.body.classList.remove('root');
+//         btnIcon.src = 'assets/sun.png';
+//         btnText.innerHTML = 'Light';
+//     } else {
+//         document.body.classList.remove('dark-theme');
+//         document.body.classList.add('root');
+//         btnIcon.src = 'assets/moon.png';
+//         btnText.innerHTML = 'Dark';
+//     }
+// }
+
+// // Apply stored theme
+// updateTheme(currentTheme);
+
+
+
+
+
+
+// let btn = document.getElementById('btn');
+// let btnText = document.getElementById('btnText');
+// let btnIcon = document.getElementById('btnIcon');
+
+// // Default theme
+// let currentTheme = 'dark-theme';
+
+// // Check if there is a theme preference stored in local storage
+// // If there is a stored preference, apply it
+// if (document.body.classList.contains('dark-theme')) {
+//     currentTheme = 'dark-theme';
+// }
+
+// // Apply the current theme
+// updateTheme(currentTheme);
+
+// btn.addEventListener('click', function () {
+//     document.body.classList.toggle('dark-theme');
+//     if(document.body.classList.contains('dark-theme')){
+//                 btnIcon.src = 'assets/sun.png';
+//                 btnText.innerHTML = 'Light';
+//                 currentTheme = 'dark-theme';
+//     }
+//     else{
+//         btnIcon.src = 'assets/moon.png';
+//         btnText.innerHTML = 'Dark';
+//         currentTheme = 'root';
+//     }
+//     // Toggle between dark and light themes
+//     updateTheme(currentTheme);
+// });
+
+// Function to update the theme
+
+
+
+
+
+
 
 
         function toggleProfilePopup() {
@@ -433,21 +549,89 @@ function closeNoteContent() {
     noteContentContainer.style.display = 'none';
 }
 
-// var buttonClose = document.getElementById('buttonClose');
-// buttonClose.addEventListener('click', function() {
-//     closeNoteContent();
-// });
+var buttonClose = document.getElementById('buttonClose');
+buttonClose.addEventListener('click', function() {
+    closeNoteContent();
+});
 
 
+
+
+
+
+
+
+
+function updateTaskStatus(checkbox) {
+    var todoId = checkbox.getAttribute('data-todo-id');
+    var isChecked = checkbox.checked;
+
+    console.log('Updating task status:', todoId, isChecked);
+
+    // Create FormData object to send data
+    var formData = new FormData();
+    formData.append('todo_id', todoId);
+    formData.append('completed', isChecked);
+
+    // Make an AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Update UI or do something upon successful completion
+                console.log('Task status updated successfully');
+            } else {
+                // Handle error
+                console.error('Failed to update todo status');
+            }
+        }
+    };
+
+    xhr.open('POST', './functions/updateTodoStatus.php', true);
+    xhr.send(formData);
+}
+
+
+// function updateTaskStatus1(checkbox) {
+//         var taskItem = checkbox.closest('li'); // Find the closest <li> element
+//         var taskText = taskItem.querySelector('span'); // Find the <span> element inside the task item
+//         var deleteButton = taskItem.querySelector('.deleteTask'); // Find the delete button inside the task item
+//         var taskList = document.querySelector('#taskList'); // Find the task list
+//         if (checkbox.checked) {
+//             taskText.classList.add('completed');
+//             moveCheckedTasks(taskItem); // Move the checked task
+//             checkbox.style.display = 'block'; // Uncheck the checkbox
+//             deleteButton.style.display = 'none'; // Hide the delete button
+//             taskList.style.appearance = 'none'; // Hide the task list
+            
+//         } else {
+//             taskText.classList.remove('completed');
+//         }
+//     }
+
+    // function moveCheckedTasks(taskItem) {
+    //     var completedTasksDiv = document.querySelector('#completedTasks');
+    //     completedTasksDiv.appendChild(taskItem);
+
+    // }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Attach event listener to all checkbox elements with class "taskCheckbox"
+    var checkboxes = document.querySelectorAll('.taskCheckbox');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            // Extract the parent <li> element
+            var listItem = this.closest('li');
+            // Get the target container based on the checkbox status
+            var targetContainer = this.checked ? document.getElementById('completedTasks') : document.getElementById('listTodos');
+            // Move the parent <li> to the target container
+            targetContainer.appendChild(listItem);
+        });
+    });
+});
 
 
 
 </script>
-
-
-
-        
-
-    </div>
 </body>
 </html>

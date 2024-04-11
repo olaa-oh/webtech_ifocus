@@ -60,8 +60,9 @@
             $prepareStmt = mysqli_stmt_prepare($stmt,$query);
             if($prepareStmt){
                 mysqli_stmt_bind_param($stmt, "sss",$username,$email,$passwordHash);
-                mysqli_stmt_execute($stmt);
-                echo "<div class = 'alert alert-success'> You are registered successfully.</div>";
+                // mysqli_stmt_execute($stmt);
+                // echo "<div class = 'alert alert-success'> You are registered successfully.</div>";
+                header("Location: login.php");
             }else{
                 echo mysqli_stmt_error($stmt);
             }

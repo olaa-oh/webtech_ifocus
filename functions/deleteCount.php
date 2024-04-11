@@ -14,13 +14,11 @@ try {
     exit();
 }
 
-// Check if todo_id parameter is set
-if (isset($_GET['todo_id'])) {
-    // Retrieve todo_id from GET parameters
-    $todoId = $_GET['todo_id'];
+// Function to count the number of deleted todo tasks
+function markTaskAsDeleted($pdo, $todoId) {
     try {
         // Prepare SQL query to update todo status to "Cancelled"
-        $stmt = $pdo->prepare("UPDATE todos SET todo_status = 'Cancelled' WHERE todo_id = :todo_id AND todo_status = 'Pending'");
+        $stmt = $pdo->prepare("UPDATE todos SET todo_status = 'Cancelled' WHERE todo_id = :todo_id");
         // Bind todo_id parameter
         $stmt->bindParam(':todo_id', $todoId);
         // Execute the query
@@ -28,17 +26,15 @@ if (isset($_GET['todo_id'])) {
         // Check if any rows were affected
         $rowCount = $stmt->rowCount();
         if ($rowCount > 0) {
-            echo "Todo task with ID $todoId has been successfully cancelled.";
-            header("Location: ../index.php");
+            return true; // Task marked as deleted successfully
         } else {
-            echo "Todo task with ID $todoId is either already cancelled or not found.";
+            return false; // Task not found or already marked as deleted
         }
     } catch (PDOException $e) {
         // Handle database errors
         // You might want to log the error or display a user-friendly message
         echo "Error: " . $e->getMessage();
+        return false;
     }
-} else {
-    echo "Todo ID parameter is missing.";
 }
 ?>

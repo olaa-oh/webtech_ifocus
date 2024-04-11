@@ -10,7 +10,7 @@ if(($_POST) >0) {
 
     // connect to the database
 
-    $string = "mysql:host=localhost;dbname=ifocusDB";
+$string = "mysql:host=localhost;dbname=ifocusDB";
 
 try {
     $connection = new PDO($string, 'root', '');
