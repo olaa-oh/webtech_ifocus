@@ -39,11 +39,13 @@
 
         // checking if email already exists
         require_once "../settings/connection.php";
-        $sql = "SELECT * from user where username = '$username'";
+        $sql = "SELECT * from users where username = '$username'";
         $result = mysqli_query($connection,$sql);
-        $rowCount = mysqli_num_rows($result);
-        if($rowCount>0){
-            array_push($errors , "Username already exists!");
+        if($result){
+            $rowCount = mysqli_num_rows($result);
+            if($rowCount>0){
+                array_push($errors , "Username already exists!");
+            }
         }
 
         if(count($errors)>0){
@@ -53,7 +55,7 @@
         }else{
             // insert into db
             
-            $query = "INSERT INTO  user (username,email,password_hash)  VALUES (?,?,?)";
+            $query = "INSERT INTO  users (username,email,password_hash)  VALUES (?,?,?)";
             $stmt = mysqli_stmt_init($connection);
             $prepareStmt = mysqli_stmt_prepare($stmt,$query);
             if($prepareStmt){
@@ -61,7 +63,7 @@
                 mysqli_stmt_execute($stmt);
                 echo "<div class = 'alert alert-success'> You are registered successfully.</div>";
             }else{
-                die("Something is wrong");
+                echo mysqli_stmt_error($stmt);
             }
         }
     }

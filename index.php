@@ -2,6 +2,7 @@
 include 'functions/todo_fxn.php';
 include 'functions/notes_fxn.php';
 include 'functions/displayNotes.php';
+include 'functions/get_note_content.php';
 // session_start();
 
 // // Check if user is logged in
@@ -158,7 +159,7 @@ include 'functions/displayNotes.php';
                     <div class="notesTitle"> NOTES</div>
                         <form action="actions/search.php" class="searchNotes">
                             <div class="searchBox">
-                                <input type="text" onfocus = "show_results()" onblur = "hide_results()" oninput = "get_data(this.value)" class = "search js-search"name = "text" id = "text" placeholder = "search notes......" >
+                                <input type="text" onfocus = "show_results()" onblur = "hide_results()" oninput = "get_data(this.value)" class = "search js-search" name = "text" id = "text" placeholder = "search notes......" >
                                 <button id="searchBtn"><img src="assets\search.png" alt="search" title = "search notes" style = "width:20px;cursor:pointer;"></button>
                             </div>
                             <div class="results js-results hide">
@@ -182,7 +183,7 @@ include 'functions/displayNotes.php';
                                         <button id="saveNote" name = "saveNote"><img src="assets\tick.png" alt="saveNote" title = "save note" style = "width:20px;cursor:pointer;"></button>
                                     </div>
                                     <div class="nContent">
-                                        <textarea wrap = "hard" maxlength = "60000" name="noteContent" id="noteContent" cols="55" rows="42" required></textarea>
+                                        <textarea wrap = "hard" maxlength = "60000" name="noteContent" id="noteContent" cols="55" rows="34" required></textarea>
                                     </div>
                                 </form>
                             </div>
@@ -195,7 +196,14 @@ include 'functions/displayNotes.php';
                         echo $noteData;
                         ?>
                     </table>
-                    <script src="js/handleDeleteNote.js"></script>
+
+                    <!-- <script src="js/handleDeleteNote.js"></script> -->
+                </div>
+                <div id="noteContentContainer">
+                <!-- <button  id = 'buttonClose  onclick ='closeNoteContent()'><img src='assets\close.png' alt='close' title = 'close note' style = 'width:10px;cursor:pointer;'></button> -->
+
+                    <button  id = "buttonClose"  onclick ="closeNoteContent()">><img src="assets\close.png" alt="close" title = "close note" style = "width:10px;cursor:pointer;"></button>
+
                 </div>
                 <div class="notesFooter"></div>
             </div>
@@ -379,13 +387,59 @@ include 'functions/displayNotes.php';
             }
         }
 
-  
+
+        function showNoteContent(noteId) {
+        // Send AJAX request to fetch note content
+        $.ajax({
+            url: 'functions/get_note_content.php', // PHP script to handle the request
+            type: 'POST',
+            data: { note_id: noteId },
+            success: function(response) {
+                // Display note content in a popup div
+                $('#noteContentContainer').html(response);
+                // Show the popup div
+                console.log('Note content:', response);
+                $('#noteContentContainer').show();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching note content:', error);
+            }
+        });
+    }
+
+
+    function toggleNoteContent() {
+    var noteContentContainer = document.getElementById('noteContentContainer');
+    // Toggle visibility of the div
+    if (noteContentContainer.style.display === 'none') {
+        noteContentContainer.style.display = 'block';
+    } else {
+        noteContentContainer.style.display = 'none';
+    }
+}
+
+
+document.addEventListener('click', function(event) {
+    var noteContentContainer = document.getElementById('noteContentContainer');
+    var targetElement = event.target;
+    if (targetElement !== noteContentContainer && !noteContentContainer.contains(targetElement)) {
+        noteContentContainer.style.display = 'none';
+
+    }
+});
+
+function closeNoteContent() {
+    var noteContentContainer = document.getElementById('noteContentContainer');
+    noteContentContainer.style.display = 'none';
+}
+
+// var buttonClose = document.getElementById('buttonClose');
+// buttonClose.addEventListener('click', function() {
+//     closeNoteContent();
+// });
 
 
 
-
-    
-// 
 
 
 </script>

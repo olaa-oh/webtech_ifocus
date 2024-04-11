@@ -34,13 +34,16 @@
             $username  = $_POST['username'];
             $password = $_POST['password'];
 
-            $sql = "SELECT * FROM user WHERE username = '$username'";
-            $result = mysqli_query($connection,$sql);
-            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $sql = "SELECT * FROM users WHERE username = '$username'";
+            $result = $connection->query($sql);
+            $user = $result->fetch_assoc();
+        
+            // $result = mysqli_query($connection,$sql);
+            // $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
             if($user){
                 if( password_verify($password,$user["password_hash"])){
                     $_SESSION['userId'] = $user['user_id'];
-                    header( "Location: ../view/start.html");
+                    header( "Location: ../index.php");
                     die();
                 }else{
                     echo "<div class = 'alert alert-danger'> wrong password</div>";

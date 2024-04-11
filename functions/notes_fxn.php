@@ -10,7 +10,7 @@ while($row = $c_data->fetch_assoc()){
     $noteData .= '
 
     <tr>
-    <td>
+    <td onclick="showNoteContent('.$row["note_id"].')">
         <div class="note">
             <div class="noteTitle">'.substr($row["note_title"],0,50).'</div>
             <div class="noteContent">'.substr($row["note_content"],0,230).'</div>

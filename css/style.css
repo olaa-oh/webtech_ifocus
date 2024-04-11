@@ -15,6 +15,9 @@
     --color10: rgb(220, 191, 255);
     --color11: rgb(208, 162, 247);
     --color12: rgba(87, 83, 83, 0.711);
+    --color13: rgb(51, 24, 107);
+    --color14:  rgba(87, 83, 83, 0.711);
+    --color15: rgb(0, 0, 0);
 
 }
 
@@ -23,6 +26,9 @@
     --color1: rgb(115, 98, 190);
     --color5: rgb(49, 56, 102); 
     --color3: rgb(255, 255, 255);
+    --color13: rgb(208, 162, 247);
+    --color14:  rgb(241, 234, 255);
+    --color15:rgb(255, 208, 236);
 
 
 
@@ -54,7 +60,7 @@ body {
     gap: 40px;
     min-height: 100vh;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1450px;
     background-color: var(--color2);
 
 }
@@ -66,6 +72,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 5%;
+    background-color: var(--color1);
     /* padding: 1%; */
 }
 
@@ -181,20 +188,10 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 .blocks {
     /* border:1px solid black ; */
     width: 100%;
-    height: 100em;
+    height: 70em;
     display: flex;
     gap: 3%;
     /* background-color: var(--color3); */
@@ -204,7 +201,7 @@ body {
 .timerTodo {
     /* border-right:1px solid black ; */
     width: 50%;
-    height: 100em;
+    height: 70em;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -648,7 +645,7 @@ ul li {
     border: 1px solid black;
     width: 50%;
     padding: 0% 1% 0% 1%;
-    height: 83em;
+    height: 70em;
     background-color: var(--color1);
     /* display: flex; */
 
@@ -752,8 +749,15 @@ table tr td {
     border-radius: 5px 0 0 5px;
     border: none;
     padding: 0.5rem  ;
-    color: var(--color4);
+    outline: none;
+    color: var(--color3);
+    /* placeholder: var(--color3); */
 }
+
+#text input[type ='text']::placeholder {
+    color: var(--color3);
+}
+
 
 #searchBtn {
     background-color: var(--color5);
@@ -817,6 +821,61 @@ table tr td {
 .notes {
     position: relative;
 }
+
+
+#noteContentContainer {
+    display: none;
+
+    gap: 1rem;
+    padding: 2%;
+    height: 60%;
+    overflow: hidden;
+    scrollbar-color: var(--color5) var(--color3);
+    scroll-padding: 0.5rem;
+    scroll-behavior: smooth;
+    background-color: var(--color2);
+    border-radius: 10px;
+    position: relative;
+    bottom: 60%;
+    border: 1px solid black; 
+    box-shadow: 1px 1px 1px;
+}
+
+#noteContentContainer:hover {
+    overflow: scroll;
+    scrollbar-color: var(--color5) var(--color3);
+    scroll-padding: 0.5rem;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.viewTitle {
+    font-size: large;
+    font-weight: bolder;
+    color: var(--color13);
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0% 2% 0% 2%;   ;
+}
+.viewContent {
+    border-top: 2px  dotted var(--color14);
+    font-size: 16px;
+    color: var(--color15);
+    padding: 2%;
+    /* background-color: var(--color3); */
+    border-radius: 10px;
+    /* box-shadow: 1px 1px 1px; */
+}
+
+
+
+
+
+
+
 
 .modalContainer {
     border: 1px solid black;
