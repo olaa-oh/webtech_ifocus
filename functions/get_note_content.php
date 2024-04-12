@@ -30,7 +30,8 @@ if(isset($_POST['note_id'])){
         "
 
         <p class = 'viewTitle'>$noteTitle
-        <button  id = 'buttonClose  onclick ='closeNoteContent()'><img src='assets\close.png' alt='close' title = 'close note' style = 'width:12px;cursor:pointer;'></button>
+        <button  id = 'buttonClose  onclick ='closeNoteContent()'><img src='../assets/close.png' alt='close' title = 'close note' style = 'width:12px;cursor:pointer;'></button>
+        <button class='edit'><img src='../assets/pencil.png' alt='edit task' class ='deleteB' ></button>
 
         </p>";
         echo "<p class = 'viewContent' contenteditable = 'true'>$noteContent</p>";

@@ -322,6 +322,9 @@ function closeModal() {
 
 
 
+
+
+
 // $(document).ready(function(){
 //     $('.delete-note').click(function(){
 //         var noteId = $(this).data('note-id');

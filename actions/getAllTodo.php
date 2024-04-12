@@ -1,47 +1,27 @@
 <?php
-include './settings/connection.php';
+include '../settings/connection.php';
 
 // Function to get all todos from the database
-function allTodos(){
+function allTodos() {
+    $query = "SELECT * FROM todos WHERE user_id = ? ORDER BY created_at DESC";
     global $connection;
-    $query = "SELECT * FROM todos ORDER BY created_at DESC";
-    if(!$output = $connection->query($query)){
-        echo "Failed";
-        exit();
-    }
-    return $output;
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    return $result;
 }
 
 // Function to get pending tasks
-function getPendingTasks() {
-    global $connection;
-    $query = "SELECT * FROM todos WHERE todo_status = 'Pending'";
-    if(!$output = $connection->query($query)){
-        echo "Failed";
-        exit();
-    }
-    return $output;
-}
+function filterTasksByStatus($status) {
+    $query = "SELECT * FROM todos WHERE user_id = ? AND todo_status = ?";
 
-// Function to get completed tasks
-function getCompletedTasks() {
     global $connection;
-    $query = "SELECT * FROM todos WHERE todo_status = 'Completed'";
-    if(!$output = $connection->query($query)){
-        echo "Failed";
-        exit();
-    }
-    return $output;
-}
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("is", $_SESSION['user_id'], $status);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Function to get cancelled tasks
-function getCancelledTasks() {
-    global $connection;
-    $query = "SELECT * FROM todos WHERE todo_status = 'Cancelled'";
-    if(!$output = $connection->query($query)){
-        echo "Failed";
-        exit();
-    }
-    return $output;
+    return $result;
 }
-?>

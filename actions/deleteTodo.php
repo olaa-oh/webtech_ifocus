@@ -29,9 +29,9 @@ if (isset($_GET['todo_id'])) {
         $rowCount = $stmt->rowCount();
         if ($rowCount > 0) {
             echo "Todo task with ID $todoId has been successfully cancelled.";
-            header("Location: ../index.php");
+            header("Location: ../view/ifocus.php");
         } else {
-            echo "Todo task with ID $todoId is either already cancelled or not found.";
+            echo "You cannot cancel a completed task.";
         }
     } catch (PDOException $e) {
         // Handle database errors

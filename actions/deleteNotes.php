@@ -22,8 +22,8 @@ if(isset($_GET['note_id'])){
         $connection->query($query);
         //prompting the user with alerts
         echo '<script> alert(" '.$t_name.' Deleted !");</script>';
-        echo '<script> window.location.href ="../index.php";</script>';
-        header('Location: ../index.php');
+        echo '<script> window.location.href ="../view/ifocus.php";</script>';
+        header('Location: ../view/ifocus.php');
         exit();
 
 

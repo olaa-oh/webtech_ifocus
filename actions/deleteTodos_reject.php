@@ -33,7 +33,7 @@ if(isset($_GET['todo_id'])){
                     echo '<script> alert(" '.$t_name.' Deleted !");</script>';
                     '<script>alert ("Number of deleted todo tasks: " . $numDeletions);</script>';
 
-                    echo '<script> window.location.href ="../index.php";</script>';
+                    echo '<script> window.location.href ="../view/ifocus.php";</script>';
                 } else {
                     // If update query fails
                     echo "Error updating todo status: " . $connection->error;

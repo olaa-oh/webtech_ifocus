@@ -9,7 +9,7 @@ session_destroy();
 
 
 //send to the front
-header("location: ../login.php");
+header("location: ../index.php");
 die();
 
 
