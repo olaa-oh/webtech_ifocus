@@ -4,10 +4,11 @@
 
 
 // Database configuration
-$dbHost = 'localhost'; // Change this to your database host
-$dbName = 'ifocusDB'; // Change this to your database name
+$dbHost = '127.0.0.1'; // Change this to your database host
+$dbName = 'ifocusdb'; // Change this to your database name
 $dbUser = 'root'; // Change this to your database username
-$dbPassword = ''; // Change this to your database password
+$dbPassword = 'DC55u4B1tg:Z'; // Change this to your database password
+
 
 try {
     // Create a new PDO instance

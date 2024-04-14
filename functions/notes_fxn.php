@@ -57,6 +57,8 @@ if ($c_data->num_rows > 0) {
     $noteData = '<tr class="empty-data"><td>You have not created any note yet!</td></tr>';
 }
 
+$countNotes = $c_data->num_rows;
+
 
 
 ?>

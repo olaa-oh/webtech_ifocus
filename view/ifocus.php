@@ -190,7 +190,11 @@
             <!-- Have it in such a way that it displays without disabling -->
             <div class="notes">
                 <div class="notesHeader">
-                    <div class="notesTitle">NOTES</div>
+                    <div class="notesTitle">NOTES(
+                        <?php
+                            echo $countNotes;
+                        ?>
+                        )</div>
                     <form action="../actions/search.php" class="searchNotes" >
                         <div class="searchBox">
                             <input type="text" onfocus="show_results()" onblur="hide_results()"
@@ -385,7 +389,7 @@
                 }
             });
 
-            ajax.open('POST', 'actions/search.php', true);
+            ajax.open('POST', '../actions/search.php', true);
             ajax.send(form);
         }
 

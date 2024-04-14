@@ -27,7 +27,7 @@ function countdown(aTimer) {
         aTimer -= 1000;
         if(aTimer <=0 )
         {
-            if(focusIntervals >1 &&(currentMode === "focus" || currentMode === "Rest")){
+            if(focusIntervals>0){
                 clearInterval(countdownInterval);
                 // window.alert("Starting rest mode");
                 changeMode();
@@ -74,61 +74,61 @@ function updateCountdown(aTimer){
 
 // function to change from focus time to rest time
 
-// function changeMode(){
-//     console.log('you');
+function changeMode(){
+    console.log('you');
+    currentMode = currentMode == "focus" ? "Rest" : "focus";
+    focusIntervals = currentMode == "focus" ? focusIntervals -1: focusIntervals;
+    currentTime = currentMode == "focus" ? focusTimer :restTimer; 
+    updateCountdown(currentTime);
+    countdown(currentTime);
+
+}
+
+
+
+// function changeMode() {
 //     currentMode = currentMode == "focus" ? "Rest" : "focus";
-//     focusIntervals = currentMode == "focus" ? focusIntervals -1: focusIntervals;
-//     currentTime = currentMode == "focus" ? focusTimer :restTimer; 
+//     focusIntervals = currentMode == "focus" ? focusIntervals - 1 : focusIntervals;
+//     currentTime = currentMode == "focus" ? focusTimer : restTimer;
 //     updateCountdown(currentTime);
 //     countdown(currentTime);
-
+    
+//     // SweetAlert for mode change
+//     Swal.fire({
+//         position: 'top',
+//         icon: 'info',
+//         title: `Mode changed to ${currentMode}`,
+//         showConfirmButton: false,
+//         timer: 1000
+//     });
+    
+//     // Notifying when the entire focus session is over
+//     if (focusIntervals === 1 && currentMode === "focus") {
+//         Swal.fire({
+//             position: 'top',
+//             icon: 'success',
+//             title: 'Focus session is about to end!  YOU CAN DO IT!',
+//             showConfirmButton: false,
+//             timer: 1000
+//         });
+//         // Resetting focus session
+//     }
+//     text
 // }
 
+// function resetSession() {
+//     // clearInterval(countdownInterval);
+//     currentMode ="focus";
+//     currentTime = focusTimer;
+//     focusIntervals =countIntervals;
 
-
-function changeMode() {
-    currentMode = currentMode == "focus" ? "Rest" : "focus";
-    focusIntervals = currentMode == "focus" ? focusIntervals - 1 : focusIntervals;
-    currentTime = currentMode == "focus" ? focusTimer : restTimer;
-    updateCountdown(currentTime);
-    countdown(currentTime);
-    
-    // SweetAlert for mode change
-    Swal.fire({
-        position: 'top',
-        icon: 'info',
-        title: `Mode changed to ${currentMode}`,
-        showConfirmButton: false,
-        timer: 1000
-    });
-    
-    // Notifying when the entire focus session is over
-    if (focusIntervals === 1 && currentMode === "focus") {
-        Swal.fire({
-            position: 'top',
-            icon: 'success',
-            title: 'Focus session is about to end!  YOU CAN DO IT!',
-            showConfirmButton: false,
-            timer: 1000
-        });
-        // Resetting focus session
-    }
-    text
-}
-
-function resetSession() {
-    // clearInterval(countdownInterval);
-    currentMode ="focus";
-    currentTime = focusTimer;
-    focusIntervals =countIntervals;
-
-    updateCountdown(currentTime);
-    countdown(currentTime);
-    clearInterval(countdownInterval);
-    // text.innerHTML = "START";
+//     updateCountdown(currentTime);
+//     countdown(currentTime);
+//     clearInterval(countdownInterval);
+//     // text.innerHTML = "START";
     
 
-}
+// }
 
 
 

@@ -1,9 +1,9 @@
 <?php
 // Assuming you have a database connection established
-$server = "localhost";
+$server = "127.0.0.1";
 $user = "root";
-$database = "ifocusDB";
-$passwd = "";
+$database = "ifocusdb";
+$passwd = "DC55u4B1tg:Z";
 
 $connection = new mysqli($server, $user, $passwd, $database);
 
